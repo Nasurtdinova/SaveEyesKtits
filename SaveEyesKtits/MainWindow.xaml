@@ -68,7 +68,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel x:Name="spPaginated" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2"></StackPanel>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btnUpdatePriority" Visibility="Collapsed" Click="btnUpdatePriority_Click">Изменить приоритет на</Button>
             <Button x:Name="btnAddAgent"  Click="btnAddAgent_Click">Добавить </Button>
         </StackPanel>
