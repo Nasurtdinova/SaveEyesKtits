@@ -1,0 +1,85 @@
+﻿<Window x:Class="SaveEyesKtits.AddEditAgentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SaveEyesKtits"
+        mc:Ignorable="d"
+        Title="AddEditAgentWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock>Наименование</TextBlock>
+            <TextBox Text="{Binding Title}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock>Тип агента</TextBlock>
+            <ComboBox Name="comboTypeAgent" SelectedItem="{Binding AgentType}" DisplayMemberPath="Title"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock>Приоритет</TextBlock>
+            <TextBox Text="{Binding Priority}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <TextBlock>Адрес</TextBlock>
+            <TextBox AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Text="{Binding Address}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock>Инн</TextBlock>
+            <TextBox Text="{Binding INN}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock>КПП</TextBlock>
+            <TextBox Text="{Binding KPP}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock>Имя директора</TextBlock>
+            <TextBox Text="{Binding DirectorName}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <TextBlock>Email</TextBlock>
+            <TextBox Text="{Binding Email}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4">
+            <TextBlock>Phone</TextBlock>
+            <TextBox Text="{Binding Phone}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Image x:Name="logoAgent" Width="100" Source="{Binding LogoByte}"></Image>
+            <Button x:Name="btnLoadImage" Click="btnLoadImage_Click">Загрузить</Button>
+        </StackPanel>
+        <ListView x:Name="lvProductSale" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding ProductSale}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Product.Title}"></TextBlock>
+                        <TextBlock Text="{Binding SaleDate, StringFormat='dd.MM.yyyy'}"></TextBlock>
+                        <TextBlock Text="{Binding ProductCount}"></TextBlock>
+                        <Button x:Name="btnRemoveProduct" Click="btnRemoveProduct_Click">Удалить</Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2">
+            <DatePicker Name="dpDate" Height="50"></DatePicker>
+            <TextBox x:Name="tbCount"></TextBox>
+        </StackPanel>
+        <ComboBox Name="comboProducts" Grid.Column="2" Grid.Row="3" DisplayMemberPath="Title" TextBoxBase.TextChanged="comboProducts_TextChanged" IsEditable="True"></ComboBox>
+        <Button x:Name="btnAddProduct" Grid.Column="2" Grid.Row="4" Click="btnAddProduct_Click">Добавить продукт</Button>
+            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+            <Button x:Name="btnRemove" Visibility="Collapsed" Click="btnRemove_Click">Удалить</Button>
+            <Button x:Name="btnSave" Click="btnSave_Click">Сохранить</Button>
+        </StackPanel>
+    </Grid>
+</Window>
