@@ -94,7 +94,9 @@ namespace SaveEyesKtits
                     Agent = CurrentAgent,
                     Product = comboProducts.SelectedItem as Product,
                     SaleDate = dpDate.SelectedDate.Value,
-                    ProductCount = Convert.ToInt32(tbCount.Text)
+                    ProductCount = Convert.ToInt32(tbCount.Text), 
+                    AgentID = CurrentAgent.ID,
+                 ProductID = (comboProducts.SelectedItem as Product).ID
                 };
                 CurrentAgent.ProductSale.Add(prod);
                 lvProductSale.Items.Refresh();
