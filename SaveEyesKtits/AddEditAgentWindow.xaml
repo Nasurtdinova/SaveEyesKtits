@@ -29,7 +29,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2">
             <TextBlock>Приоритет</TextBlock>
-            <TextBox Text="{Binding Priority}"></TextBox>
+            <TextBox PreviewTextInput="tbCount_PreviewTextInput" Text="{Binding Priority}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3">
             <TextBlock>Адрес</TextBlock>
@@ -73,7 +73,7 @@
         </ListView>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2">
             <DatePicker Name="dpDate" Height="50"></DatePicker>
-            <TextBox x:Name="tbCount"></TextBox>
+            <TextBox PreviewTextInput="tbCount_PreviewTextInput" x:Name="tbCount"></TextBox>
         </StackPanel>
         <ComboBox Name="comboProducts" Grid.Column="2" Grid.Row="3" DisplayMemberPath="Title" TextBoxBase.TextChanged="comboProducts_TextChanged" IsEditable="True"></ComboBox>
         <Button x:Name="btnAddProduct" Grid.Column="2" Grid.Row="4" Click="btnAddProduct_Click">Добавить продукт</Button>

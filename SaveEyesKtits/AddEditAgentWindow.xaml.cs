@@ -64,7 +64,20 @@ namespace SaveEyesKtits
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-
+            if (CurrentAgent.ProductSale.Count() == 0)
+            {
+                if (CurrentAgent.AgentPriorityHistory.Count != 0)
+                    Connection.Context.AgentPriorityHistory.RemoveRange(CurrentAgent.AgentPriorityHistory);
+                if (CurrentAgent.Shop.Count != 0)
+                    Connection.Context.Shop.RemoveRange(CurrentAgent.Shop);
+                Connection.Context.Agent.Remove(CurrentAgent);
+                Connection.Context.SaveChanges();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Удаление запрещено!");
+            }
         }
 
         private void comboProducts_TextChanged(object sender, TextChangedEventArgs e)
@@ -93,6 +106,12 @@ namespace SaveEyesKtits
             var product = (sender as Button).DataContext as ProductSale;
             CurrentAgent.ProductSale.Remove(product);
             lvProductSale.Items.Refresh();
+        }
+
+        private void tbCount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+                e.Handled = true;
         }
     }
 }

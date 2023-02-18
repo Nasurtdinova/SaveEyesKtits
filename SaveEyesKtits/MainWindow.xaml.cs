@@ -53,7 +53,7 @@ namespace SaveEyesKtits
                     Filtered();
                     return;
                 case ">":
-                    if (ActualPage < FilteredAgents.Count() / 10) ActualPage++;
+                    if (ActualPage < (FilteredAgents.Count() / 10 + (Connection.Context.Agent.ToList().Count() % 10 != 0? 1 : 0)) -1) ActualPage++;
                     Filtered();
                     return;
                 default:
