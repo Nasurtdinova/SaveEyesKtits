@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace SaveEyesKtits
 {
-    /// <summary>
-    /// Логика взаимодействия для AddEditAgentWindow.xaml
-    /// </summary>
     public partial class AddEditAgentWindow : Window
     {
         public Agent CurrentAgent = new Agent();
@@ -96,7 +93,7 @@ namespace SaveEyesKtits
                     SaleDate = dpDate.SelectedDate.Value,
                     ProductCount = Convert.ToInt32(tbCount.Text), 
                     AgentID = CurrentAgent.ID,
-                 ProductID = (comboProducts.SelectedItem as Product).ID
+                    ProductID = (comboProducts.SelectedItem as Product).ID
                 };
                 CurrentAgent.ProductSale.Add(prod);
                 lvProductSale.Items.Refresh();

@@ -18,8 +18,10 @@ namespace SaveEyesKtits
 {
     public partial class MainWindow : Window
     {
+        public List<Agent> FilteredAgents = new List<Agent>();
         public int ActualPage { get; set; }
-        public IEnumerable<Agent> PaginatedAgents { 
+        public IEnumerable<Agent> PaginatedAgents 
+        { 
             get
             {
                 spPaginated.Children.Clear();
@@ -37,7 +39,7 @@ namespace SaveEyesKtits
                 foreach(TextBlock tb in spPaginated.Children)
                     tb.PreviewMouseDown += spPaginated_PreviewMouseDown;
 
-                if (spPaginated.Children.Count != 0 && (spPaginated.Children[ActualPage+1] as TextBlock).Text != ">" || (spPaginated.Children[ActualPage + 1] as TextBlock).Text != "<")
+                if (spPaginated.Children.Count != 0 && (spPaginated.Children[ActualPage + 1] as TextBlock).Text != ">" || (spPaginated.Children[ActualPage + 1] as TextBlock).Text != "<")
                     (spPaginated.Children[ActualPage + 1] as TextBlock).TextDecorations = TextDecorations.Underline;
 
                 return FilteredAgents.Skip(ActualPage * 10).Take(10);
@@ -63,7 +65,6 @@ namespace SaveEyesKtits
             }
         }
 
-        public List<Agent> FilteredAgents = new List<Agent>();
         public MainWindow()
         {
             InitializeComponent();
@@ -142,11 +143,6 @@ namespace SaveEyesKtits
             Filtered();
         }
 
-        private void lvAgents_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            btnUpdatePriority.Visibility = Visibility.Visible;
-        }
-
         private void btnUpdatePriority_Click(object sender, RoutedEventArgs e)
         {
             var list = lvAgents.SelectedItems.Cast<Agent>().ToList();
@@ -168,6 +164,12 @@ namespace SaveEyesKtits
             {
                 Filtered();
             };
+        }
+
+        private void lvAgents_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvAgents.SelectedItem != null)
+                btnUpdatePriority.Visibility = Visibility.Visible;
         }
     }
 }

@@ -18,7 +18,7 @@
             <ComboBox Name="comboType" DisplayMemberPath="Title" SelectionChanged="comboType_SelectionChanged" SelectedIndex="0"></ComboBox>
         </StackPanel>
         
-        <ListView Grid.Row="1" MouseDoubleClick="lvAgents_MouseDoubleClick" x:Name="lvAgents" MouseUp="lvAgents_MouseUp">
+        <ListView Grid.Row="1" MouseDoubleClick="lvAgents_MouseDoubleClick" x:Name="lvAgents" SelectionChanged="lvAgents_SelectionChanged">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -48,14 +48,20 @@
                                 <Run Text="|"></Run>
                                 <Run Text="{Binding Title}"></Run>
                             </TextBlock>
-                            <TextBlock Text="{Binding CountSale}"></TextBlock>
+                                <TextBlock>                                
+                                <Run Text="{Binding CountSale, Mode=OneWay}"></Run>
+                                <Run Text="продаж за год"></Run>
+                            </TextBlock>
                             <TextBlock Text="{Binding Phone}"></TextBlock>
                             <TextBlock>
                                 <Run Text="Приоритетность:"></Run>
                                 <Run Text="{Binding Priority}"></Run>
                             </TextBlock>
                         </StackPanel>
-                        <TextBlock Grid.Column="2" Text="{Binding SizeDiscount}"></TextBlock>
+                        <TextBlock Grid.Column="2">
+                             <Run Text="{Binding SizeDiscount, Mode=OneWay}"></Run>
+                            <Run Text="%"></Run>
+                        </TextBlock>
                     </Grid>
                     </Border>
                 </DataTemplate>
