@@ -162,6 +162,7 @@ namespace SaveEyesKtits
             win.Show();
             win.Closed += (s, eventarg) =>
             {
+                ActualPage = 0;
                 Filtered();
             };
         }

@@ -60,13 +60,11 @@ namespace SaveEyesKtits
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
-        {
+        {           
             if (CurrentAgent.ProductSale.Count() == 0)
             {
-                if (CurrentAgent.AgentPriorityHistory.Count != 0)
-                    Connection.Context.AgentPriorityHistory.RemoveRange(CurrentAgent.AgentPriorityHistory);
-                if (CurrentAgent.Shop.Count != 0)
-                    Connection.Context.Shop.RemoveRange(CurrentAgent.Shop);
+                Connection.Context.AgentPriorityHistory.RemoveRange(CurrentAgent.AgentPriorityHistory);
+                Connection.Context.Shop.RemoveRange(CurrentAgent.Shop);
                 Connection.Context.Agent.Remove(CurrentAgent);
                 Connection.Context.SaveChanges();
                 Close();
@@ -103,7 +101,7 @@ namespace SaveEyesKtits
         private void btnRemoveProduct_Click(object sender, RoutedEventArgs e)
         {
             var product = (sender as Button).DataContext as ProductSale;
-            CurrentAgent.ProductSale.Remove(product);
+            Connection.Context.ProductSale.Remove(product);
             lvProductSale.Items.Refresh();
         }
 
